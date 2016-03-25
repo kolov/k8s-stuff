@@ -17,13 +17,14 @@ spec:
       - image: harbur/sonarqube:latest
         name: sonar
         env:
+          - name: DB_HOST
+            value: postgre
           - name: DB_USER
             value: sonar
           - name: DB_PASS
             value: xaexohquaetiesoo
           - name: DB_NAME
             value: sonar
-
         ports:
         - containerPort: 9000
           name: sonar-server
