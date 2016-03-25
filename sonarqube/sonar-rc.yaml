@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: sonar
+  name: sonar-controller
+spec:
+  replicas: 1
+  selector:
+    name: sonar
+  template:
+    metadata:
+      labels:
+        name: sonar
+    spec:
+      containers:
+      - image: harbur/sonarqube:latest
+        name: sonar
+        env:
+          - name: DB_USER
+            value: sonar
+          - name: DB_PASS
+            value: xaexohquaetiesoo
+          - name: DB_NAME
+            value: sonar
+
+        ports:
+        - containerPort: 9000
+          name: sonar-server
