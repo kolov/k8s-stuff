@@ -30,6 +30,5 @@ spec:
               mountPath: /var/lib/postgresql
       volumes:
         - name: postgre-persistent-storage
-          gcePersistentDisk:
-            pdName: postgre-disk
-            fsType: ext4
+          hostPath: 
+            path: /var/data/postgre
