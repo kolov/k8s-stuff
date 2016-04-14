@@ -14,14 +14,14 @@ spec:
         name: sonar
     spec:
       containers:
-      - image: harbur/sonarqube:latest
+      - image: sonarqube
         name: sonar
         env:
-          - name: DB_HOST
-            value: postgre
-          - name: DB_USER
+          - name: SONARQUBE_JDBC_URL
+            value: jdbc:postgresql://postgre/sonar
+          - name: SONARQUBE_JDBC_USERNAME
             value: sonar
-          - name: DB_PASS
+          - name: SONARQUBE_JDBC_PASSWORD
             value: xaexohquaetiesoo
           - name: DB_NAME
             value: sonar
