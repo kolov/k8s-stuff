@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: jenkins
+  name: jenkins-controller
+spec:
+  replicas: 1
+  selector:
+    name: jenkins
+  template:
+    metadata:
+      labels:
+        name: jenkins
+    spec:
+      containers:
+      - image: kolov/jenkins-docker
+        name: jenkins
+        ports:
+        - containerPort: 8080
+          name: jenkins-server

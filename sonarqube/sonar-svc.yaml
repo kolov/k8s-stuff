@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: sonar
   labels:
     name: sonar
+  name: sonar
 spec:
   type: LoadBalancer
   loadBalancerIP: 10.0.0.200
