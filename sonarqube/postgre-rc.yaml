@@ -31,4 +31,4 @@ spec:
       volumes:
         - name: postgre-persistent-storage
           hostPath: 
-            path: /var/data/postgre
+            path: /var/data/postgr
