@@ -3,6 +3,7 @@ kind: ReplicationController
 metadata:
   labels:
     name: postgre
+    sonar-version: v5
   name: postgre-controller
 spec:
   replicas: 1
@@ -26,9 +27,9 @@ spec:
           containerPort: 5432
           hostPort: 5432
         volumeMounts:
-            - name: postgre-persistent-storage
+            - name: postgre-sonar5-storage
               mountPath: /var/lib/postgresql
       volumes:
-        - name: postgre-persistent-storage
-          hostPath: 
-            path: /var/data/postgr
+        - name: postgre-sonar5-storage
+          hostPath:
+            path: /var/data/docker/postgre-sonar-5

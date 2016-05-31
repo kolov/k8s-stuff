@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: postgre
+    sonar-version: v4
+  name: postgre-sonar4-rc
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: postgre
+    spec:
+      containers:
+      - image: orchardup/postgresql:latest
+        name: postgre
+        env:
+          - name: POSTGRESQL_USER
+            value: sonar
+          - name: POSTGRESQL_PASS
+            value: xaexohquaetiesoo
+          - name: POSTGRESQL_DB
+            value: sonar
+        ports:
+        - name: postgre
+          containerPort: 5432
+          hostPort: 5432
+        volumeMounts:
+            - name: postgre-sonar4-storage
+              mountPath: /var/lib/postgresql
+      volumes:
+        - name: postgre-sonar4-storage
+          hostPath: 
+            path: /var/data/docker/postgre-sonar4
