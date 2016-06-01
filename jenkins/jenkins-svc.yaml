@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: jenkins
+  name: jenkins
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 10.0.0.201
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    name: jenkins
