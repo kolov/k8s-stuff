@@ -4,7 +4,7 @@ metadata:
   labels:
     name: postgre
     sonar-version: v4
-  name: postgre-sonar4-rc
+  name: postgre
 spec:
   replicas: 1
   template:

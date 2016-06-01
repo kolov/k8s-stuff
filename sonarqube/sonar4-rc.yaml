@@ -4,7 +4,7 @@ metadata:
   labels:
     name: sonar
     sonar-version: v4
-  name: sonar4-controller
+  name: sonar
 spec:
   replicas: 1
   selector:
@@ -19,7 +19,7 @@ spec:
         name: sonar
         env:
           - name: SONARQUBE_JDBC_URL
-            value: jdbc:postgresql://postgre4/sonar
+            value: jdbc:postgresql://postgre/sonar
           - name: SONARQUBE_JDBC_USERNAME
             value: sonar
           - name: SONARQUBE_JDBC_PASSWORD
