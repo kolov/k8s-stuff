@@ -1,16 +1,17 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  labels:
-    name: postgre
-    sonar-version: v4
-  name: postgre
+  name: postgre4
 spec:
   replicas: 1
+  selector:
+    name: postgre
+    sonar-version: v4
   template:
     metadata:
       labels:
         name: postgre
+        sonar-version: v4
     spec:
       containers:
       - image: orchardup/postgresql:latest
@@ -23,7 +24,7 @@ spec:
           - name: POSTGRESQL_DB
             value: sonar
         ports:
-        - name: postgre
+        - name: postgre4
           containerPort: 5432
           hostPort: 5432
         volumeMounts:

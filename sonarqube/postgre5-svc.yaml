@@ -9,4 +9,5 @@ spec:
     - port: 5432
       targetPort: 5432
   selector:
-    name: postgre5
+    name: postgre
+    sonar-version: v5
