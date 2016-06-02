@@ -2,12 +2,11 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    name: postgre4
-  name: postgre4
+    name: postgre5
+  name: postgre5
 spec:
   ports:
-    - port: 5005
+    - port: 5432
       targetPort: 5432
   selector:
-    name: postgre
-    sonar-version: v5
+    name: postgre5

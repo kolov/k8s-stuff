@@ -2,15 +2,15 @@ apiVersion: v1
 kind: ReplicationController
 metadata:
   labels:
-    name: postgre
-    sonar-version: v5
-  name: postgre-controller
+    name: postgre5
+    sonar-version: v4
+  name: postgre5
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        name: postgre
+        name: postgre5
     spec:
       containers:
       - image: orchardup/postgresql:latest
@@ -22,14 +22,10 @@ spec:
             value: xaexohquaetiesoo
           - name: POSTGRESQL_DB
             value: sonar
-        ports:
-        - name: postgre
-          containerPort: 5432
-          hostPort: 5432
         volumeMounts:
             - name: postgre-sonar5-storage
               mountPath: /var/lib/postgresql
       volumes:
         - name: postgre-sonar5-storage
           hostPath:
-            path: /var/data/docker/postgre-sonar-5
+            path: /var/data/docker/postgre-sonar5

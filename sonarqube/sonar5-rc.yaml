@@ -2,23 +2,24 @@ apiVersion: v1
 kind: ReplicationController
 metadata:
   labels:
-    name: sonar
-  name: sonar-controller
+    name: sonar5
+    sonar-version: v5
+  name: sonar5
 spec:
   replicas: 1
   selector:
-    name: sonar
+    name: sonar5
   template:
     metadata:
       labels:
-        name: sonar
+        name: sonar5
     spec:
       containers:
       - image: sonarqube
-        name: sonar
+        name: sonar5
         env:
           - name: SONARQUBE_JDBC_URL
-            value: jdbc:postgresql://postgre/sonar
+            value: jdbc:postgresql://postgre5/sonar
           - name: SONARQUBE_JDBC_USERNAME
             value: sonar
           - name: SONARQUBE_JDBC_PASSWORD
@@ -27,4 +28,4 @@ spec:
             value: sonar
         ports:
         - containerPort: 9000
-          name: sonar-server
+          name: sonar5-server
