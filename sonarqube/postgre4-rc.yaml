@@ -32,5 +32,5 @@ spec:
               mountPath: /var/lib/postgresql
       volumes:
         - name: postgre-sonar4-storage
-          hostPath: 
+          hostPath:
             path: /var/data/docker/postgre-sonar4
