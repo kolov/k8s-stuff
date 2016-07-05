@@ -12,8 +12,3 @@ RUN apt-get update && apt-get install -y curl iptables
 USER jenkins
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
 RUN echo 2.0 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
-
-USER root
-COPY run-jenkins.sh /bin/run-nexus.sh
-RUN chmod +x /bin/run-nexus.sh
-CMD /bin/run-nexus.sh

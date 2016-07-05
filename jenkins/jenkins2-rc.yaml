@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: jenkins2
+  name: jenkins-controller
+spec:
+  replicas: 1
+  selector:
+    name: jenkins2
+  template:
+    metadata:
+      labels:
+        name: jenkins2
+    spec:
+      containers:
+      - image: kolov/jenkins2:latest
+        name: jenkins
+        ports:
+        - containerPort: 8080
+          name: jenkins-server
+        volumeMounts:
+        - name: jenkins
+          mountPath: /var/jenkins_home
+      volumes:
+        - name: jenkins
+          gcePersistentDisk:
+            pdName: jenkins
+            fsType: ext4
+

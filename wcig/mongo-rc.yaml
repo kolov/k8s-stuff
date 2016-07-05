@@ -20,10 +20,10 @@ spec:
           containerPort: 27017
           hostPort: 27017
         volumeMounts:
-        - name: mongo-persistent-storage
+        - name: mongo-wcig
           mountPath: /data/db
       volumes:
-      - name: mongo-persistent-storage
-          gcePersistentDisk:
-            pdName: mongo-disk
+      - name: mongo-wcig
+        gcePersistentDisk:
+          pdName: mongo-wcig
           fsType: ext4
