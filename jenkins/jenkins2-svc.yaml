@@ -6,6 +6,7 @@ metadata:
   name: jenkins2
 spec:
   type: LoadBalancer
+  loadBalancerIP: 104.155.97.154
   ports:
     - port: 8080
       targetPort: 8080
