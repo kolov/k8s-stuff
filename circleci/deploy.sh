@@ -8,7 +8,7 @@ sudo /opt/google-cloud-sdk/bin/gcloud config set project $PROJECT_NAME
 sudo /opt/google-cloud-sdk/bin/gcloud config set container/cluster $CLUSTER_NAME
 sudo /opt/google-cloud-sdk/bin/gcloud config set compute/zone ${CLOUDSDK_COMPUTE_ZONE}
 sudo /opt/google-cloud-sdk/bin/gcloud container clusters get-credentials $CLUSTER_NAME
-docker build -t eu.gcr.io/${PROJECT_NAME}/${APP_NAME}:$CIRCLE_SHA1 build/libs
+docker build -t eu.gcr.io/${PROJECT_NAME}/${APP_NAME}:$CIRCLE_SHA1 $BUILD_TARGET_DIR
 sudo /opt/google-cloud-sdk/bin/gcloud docker -- push eu.gcr.io/${PROJECT_NAME}/${APP_NAME}:$CIRCLE_SHA1
 sudo chown -R ubuntu:ubuntu /home/ubuntu/.kube
 sudo chown -R $USER /home/ubuntu/.config
