@@ -1,2 +1,2 @@
-SBT_OPTS="-Xms512M -Xmx2048M"
+SBT_OPTS="-Xms1024M -Xmx2048M"
 java $SBT_OPTS -jar /scala/sbt-launch.jar "$@"
