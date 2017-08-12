@@ -4,6 +4,10 @@
 set +x
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 chmod +x kubectl
+mkdir ~/bin
+mv kubectl ~/bin
+PATH=$PATH:$(pwd)/bin
+echo $PATH
 mkdir ~/.kube
 echo $KUBECONFIGDATA | base64 --decode --ignore-garbage > ~/.kube/config
 sed s/%VERSION%/$CIRCLE_SHA1/g k8s-deployment.yml > k8s-deployment-latest.yml
