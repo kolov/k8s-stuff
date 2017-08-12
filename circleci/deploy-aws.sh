@@ -15,6 +15,6 @@ eval $(aws ecr get-login --region eu-central-1)
 docker build --rm=false -t $AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/$APP_NAME:$CIRCLE_SHA1 .
 REGISTRY=$AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com
 docker push $REGISTRY/$APP_NAME:$CIRCLE_SHA1
-sed 's/%VERSION%/$CIRCLE_SHA1/g; s/%APP_NAME%/$APP_NAME/g; s/%REGISTRY%/$REGISTRY/g' k8s-deployment.yml > k8s-deployment-latest.yml
+sed -e s/%VERSION%/$CIRCLE_SHA1/g -e s/%APP_NAME%/$APP_NAME/g -e s/%REGISTRY%/$REGISTRY/g k8s-deployment.yml > k8s-deployment-latest.yml
 kubectl apply -f k8s-deployment-latest.yml
 kubectl apply -f k8s-service.yml
