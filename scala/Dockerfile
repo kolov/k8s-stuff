@@ -1,11 +1,10 @@
-FROM openjdk:8-jdk-alpine
+FROM  openjdk:8u131-jdk
 
-RUN apk update && apk add curl && apk add bash
-RUN addgroup scala && adduser scala -G scala -D -s /bin/bash
+RUN addgroup scala && useradd scala -g scala -s /bin/bash -m
 
 
 ENV SCALA_VERSION 2.11.7
-ENV SBT_VERSION 0.13.13
+ENV SBT_VERSION 0.13.15
 
 RUN mkdir /scala
 COPY sbt /scala
@@ -19,7 +18,7 @@ RUN curl -SLf http://downloads.typesafe.com/scala/$SCALA_VERSION/scala-$SCALA_VE
   && cp -r ~/tmp/scala-$SCALA_VERSION/. /scala \
   && rm -rf ~/tmp
 
-RUN chown scala:scala /scala/*
+RUN chown scala:scala -R /scala/*
 RUN chmod +x /scala/sbt
 USER scala
 ENV PATH /scala:$PATH
