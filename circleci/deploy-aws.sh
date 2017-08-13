@@ -7,6 +7,7 @@ mv kubectl ~/bin
 PATH=$PATH:$(pwd)/bin
 echo $PATH
 mkdir ~/.kube
+echo $KUBECONFIGDATA | base64 --decode --ignore-garbage > ~/.kube/config
 aws ecr get-login
 eval $(aws ecr)
 docker build --rm=false -t $AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/$APP_NAME:$CIRCLE_SHA1 .
