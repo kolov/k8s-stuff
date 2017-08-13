@@ -9,7 +9,7 @@ echo $PATH
 mkdir ~/.kube
 echo $KUBECONFIGDATA | base64 --decode --ignore-garbage > ~/.kube/config
 aws ecr get-login
-eval $(aws ecr)
+eval $(aws ecr get-login)
 docker build --rm=false -t $AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/$APP_NAME:$CIRCLE_SHA1 .
 REGISTRY=$AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com
 docker push $REGISTRY/$APP_NAME:$CIRCLE_SHA1
