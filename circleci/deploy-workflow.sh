@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-set +x
+set -x
 mkdir ~/.kube
 echo $KUBECONFIGDATA | base64 --decode --ignore-garbage > ~/.kube/config
-echo $AWS_ACCOUNT_ID
+echo AWS_ACCOUNT_ID=$AWS_ACCOUNT_ID
 eval $(aws ecr get-login)
 docker build --rm=false -t $AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/$APP_NAME:$CIRCLE_SHA1 $BUILD_TARGET_DIR
 REGISTRY=$AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com
