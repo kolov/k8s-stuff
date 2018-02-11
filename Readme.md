@@ -32,3 +32,10 @@ sudo docker rm -f $(sudo docker ps -aq)
 sudo umount `cat /proc/mounts | grep /var/lib/kubelet | awk '{print $2}'`
 sudo rm -rf /var/lib/kubelet
 
+#Install 
+
+## Digital Ocean
+
+kubeadm init --apiserver-advertise-address 174.138.97.107 --pod-network-cidr=192.168.0.0/16
+kubectl apply -f https://docs.projectcalico.org/v2.6/getting-started/kubernetes/installation/hosted/kubeadm/1.6/calico.yaml
+
