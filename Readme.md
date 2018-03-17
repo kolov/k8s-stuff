@@ -1,4 +1,4 @@
-This project contains bits and pieces of stuff deployable on kubernetes
+This project contains bits and pieces of kubernetes related stuff
 
 Some random note floolow below
 

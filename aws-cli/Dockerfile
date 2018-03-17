@@ -40,6 +40,10 @@ WORKDIR /home/aws
 
 USER aws
 
+RUN wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-188.0.1-linux-x86_64.tar.gz && \
+    tar -xvf google-cloud-sdk-188.0.1-linux-x86_64.tar.gz && \
+    ./google-cloud-sdk/install.sh
+
 RUN \
     mkdir aws && \
     virtualenv aws/env && \
@@ -47,13 +51,14 @@ RUN \
     echo 'source $HOME/aws/env/bin/activate' >> .bashrc && \
     echo 'complete -C aws_completer aws' >> .bashrc
 
-
-
 USER root
+
 RUN apt-get update
-RUN apt-get install curl -y
-RUN apt-get install software-properties-common python-software-properties -y
-RUN apt-get install apt-transport-https -y
+RUN apt-get install curl -y &&   \
+    apt-get install gnupg2 -y && \
+    apt-get install software-properties-common python-software-properties -y && \
+    apt-get install apt-transport-https -y
+RUN echo 123 > t && echo 123 |  gpg --no-tty --passphrase-fd 0 --symmetric
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg |  apt-key add -
 RUN add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 RUN apt-get update
@@ -61,7 +66,5 @@ RUN apt-get install -y docker-ce
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 RUN chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
 
-
-
 USER aws
-ENV PATH="/home/aws/aws/env/bin:${PATH}"
+ENV PATH="/home/aws/google-cloud-sdk/bin:/home/aws/aws/env/bin:${PATH}"
