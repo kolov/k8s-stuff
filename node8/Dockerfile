@@ -1,8 +1,9 @@
-FROM  node:8
+FROM  node:9
 
-USER root
-# RUN npm install -g bower && npm install -g gulp && npm link gulp
-# RUN npm install -g npmlog
-# RUN npm i -g npm
-RUN npm install -g @angular/cli
+# USER root
+RUN npm update
+RUN npm install elm
+RUN yarn add webpack webpack-dev-server elm-webpack-loader file-loader style-loader css-loader url-loader
+RUN yarn add ace-css@1.1 font-awesome@4
+RUN yarn add foreman
 USER node
